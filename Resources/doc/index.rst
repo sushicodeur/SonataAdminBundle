@@ -1,24 +1,12 @@
-.. SonataAdminBundle documentation master file, created by
-   sphinx-quickstart on Sun May  1 16:09:38 2011.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Admin Bundle
+============
 
-Welcome to Sonata - Doctrine ORM Admin's documentation!
-=======================================================
+**SonataAdminBundle is split into 4 bundles:**
 
-The ``Doctrine ORM Admin`` provides services to work with the ``Admin Bundle`` and the ``Doctrine Project``.
-
-**Warning**: The bundle has been split into 4 bundles :
-
-* SonataAdminBundle : the current one, contains core librairies and services
-* `SonataDoctrineORMAdminBundle <https://github.com/sonata-project/SonataDoctrineORMAdminBundle>`_: Integrates the admin bundle into with the Doctrine ORM project
-* `SonataDoctrineMongoDBAdminBundle <https://github.com/sonata-project/SonataDoctrineMongoDBAdminBundle>`_: Integrates the admin bundle into with MongoDB (early stage)
-* `SonataDoctrinePhpcrAdminBundle <https://github.com/sonata-project/SonataDoctrinePhpcrAdminBundle>`_: Integrates the admin bundle into with PHPCR (early stage)
-
-**Google Groups**: For questions and proposals you can post on this google groups
-
-* `Sonata Users <https://groups.google.com/group/sonata-users>`_: Only for user questions
-* `Sonata Devs <https://groups.google.com/group/sonata-devs>`_: Only for devs
+* SonataAdminBundle: contains core libraries and services
+* `SonataDoctrineORMAdminBundle <https://github.com/sonata-project/SonataDoctrineORMAdminBundle>`_: Integrates Doctrine ORM project with the core admin bundle
+* `SonataDoctrineMongoDBAdminBundle <https://github.com/sonata-project/SonataDoctrineMongoDBAdminBundle>`_: Integrates MongoDB with the core admin bundle (early stage)
+* `SonataDoctrinePhpcrAdminBundle <https://github.com/sonata-project/SonataDoctrinePhpcrAdminBundle>`_: Integrates PHPCR with the core admin bundle (early stage)
 
 Reference Guide
 ---------------
@@ -28,6 +16,7 @@ Reference Guide
    :numbered:
 
    reference/installation
+   reference/getting_started
    reference/configuration
    reference/architecture
    reference/dashboard
@@ -40,3 +29,4 @@ Reference Guide
    reference/translation
    reference/security
    reference/advance
+   reference/console

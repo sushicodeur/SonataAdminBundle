@@ -125,6 +125,8 @@ class HelperController
             $admin->setUniqid($uniqid);
         }
 
+        $admin->setSubject($subject);
+        
         $formBuilder = $admin->getFormBuilder($subject);
 
         $form = $formBuilder->getForm();
@@ -201,17 +203,17 @@ class HelperController
             ));
         }
 
-        // check user permission
-        if (false === $admin->isGranted('EDIT')) {
-            return new Response(json_encode(array('status' => 'KO', 'message' => 'Invalid permissions')), 200, array(
-                'Content-Type' => 'application/json'
-            ));
-        }
-
         $object = $admin->getObject($objectId);
 
         if (!$object) {
             return new Response(json_encode(array('status' => 'KO', 'message' => 'Object does not exist')), 200, array(
+                'Content-Type' => 'application/json'
+            ));
+        }
+
+        // check user permission
+        if (false === $admin->isGranted('EDIT', $object)) {
+            return new Response(json_encode(array('status' => 'KO', 'message' => 'Invalid permissions')), 200, array(
                 'Content-Type' => 'application/json'
             ));
         }

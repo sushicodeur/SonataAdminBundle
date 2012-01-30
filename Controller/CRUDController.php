@@ -185,15 +185,15 @@ class CRUDController extends Controller
      */
     public function deleteAction($id)
     {
-        if (false === $this->admin->isGranted('DELETE')) {
-            throw new AccessDeniedException();
-        }
-
         $id = $this->get('request')->get($this->admin->getIdParameter());
         $object = $this->admin->getObject($id);
 
         if (!$object) {
             throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
+        }
+
+        if (false === $this->admin->isGranted('DELETE', $object)) {
+            throw new AccessDeniedException();
         }
 
         if ($this->getRequest()->getMethod() == 'DELETE') {
@@ -222,16 +222,16 @@ class CRUDController extends Controller
      */
     public function editAction($id = null)
     {
-        if (false === $this->admin->isGranted('EDIT')) {
-            throw new AccessDeniedException();
-        }
-
         $id = $this->get('request')->get($this->admin->getIdParameter());
 
         $object = $this->admin->getObject($id);
 
         if (!$object) {
             throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
+        }
+
+        if (false === $this->admin->isGranted('EDIT', $object)) {
+            throw new AccessDeniedException();
         }
 
         $this->admin->setSubject($object);
@@ -429,10 +429,6 @@ class CRUDController extends Controller
      */
     public function showAction($id = null)
     {
-        if (false === $this->admin->isGranted('SHOW')) {
-            throw new AccessDeniedException();
-        }
-
         $id = $this->get('request')->get($this->admin->getIdParameter());
 
         $object = $this->admin->getObject($id);
@@ -441,10 +437,11 @@ class CRUDController extends Controller
             throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
         }
 
-        $this->admin->setSubject($object);
+        if (false === $this->admin->isGranted('VIEW', $object)) {
+            throw new AccessDeniedException();
+        }
 
-        // build the show list
-        $elements = $this->admin->getShow();
+        $this->admin->setSubject($object);
 
         return $this->render($this->admin->getShowTemplate(), array(
             'action'   => 'show',
